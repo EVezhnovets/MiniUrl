@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MiniUrl.ApplicationCore;
 using MiniUrl.ApplicationCore.Interfaces;
 
 namespace MiniUrl.Infrastructure
@@ -14,6 +15,8 @@ namespace MiniUrl.Infrastructure
             options.UseSqlServer(configuration.GetConnectionString("miniUrlConnection")));
 
             services.AddSingleton(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+            
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
     }
 }

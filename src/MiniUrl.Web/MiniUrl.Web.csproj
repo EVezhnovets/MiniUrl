@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MiniUrl.ApplicationCore\MiniUrl.ApplicationCore.csproj" />
     <ProjectReference Include="..\MiniUrl.Infrastructure\MiniUrl.Infrastructure.csproj" />
   </ItemGroup>
 

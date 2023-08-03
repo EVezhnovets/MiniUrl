@@ -1,0 +1,66 @@
+﻿@model MiniUrlIndexVM
+
+<div class="row">
+    <div class="col-md-4" style="margin:auto">
+        <section>
+            <form method="post" style="margin-top:3rem">
+                <h3>Minimize long URL</h3>
+                <div class="form-floating mb-3">
+                    <input asp-for="MiniUrlItem!.Url" class="form-control" autocomplete="" aria-required="true" placeholder="" />
+                    <label asp-for="MiniUrlItem!.Url" class="form-label">Enter long Url here</label>
+                    <span asp-validation-for="MiniUrlItem!.Url" class="text-danger"></span>
+                </div>
+                <h3>Customize your link</h3>
+                <div class="form-floating mb-3">
+                    <input asp-for="MiniUrlItem!.Alias" class="form-control" autocomplete="" aria-required="true" placeholder="" />
+                    <label asp-for="MiniUrlItem!.Alias" class="form-label">Enter alias</label>
+                    <span asp-validation-for="MiniUrlItem!.Alias" class="text-danger"></span>
+                </div>
+                <div>
+                    <button type="submit" class="w-100 btn btn-lg btn-success">Shorten URL</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@if (Model.MiniUrls!.Count() == 0)
+{
+    <h2>No your any miniUrls</h2>
+}
+else
+{
+    <div style="width:95%; margin: 3rem auto">
+        <h2>Your miniUrls</h2>
+        <table class="table table-striped">
+            <tbody>
+                @foreach (var obj in Model.MiniUrls!)
+                {
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <a href="@obj.Url" style="display:block">@obj.Domain/@obj.Alias"</a>
+                                    <p style="word-break:break-all">@obj.Url</p>
+                                    <p>Created @obj.CreatedAt.ToShortDateString()</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="btn-toolbar justify-content-around" role="toolbar" >
+                                        <a asp-controller="Main" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-primary">
+                                            <i class="bi bi-wrench"></i>
+                                        </a>
+                                        <form method="post" asp-controller="Main" asp-action="Delete" asp-route-id="@obj.Id">
+                                            <button type="submit" class="btn btn-outline-danger">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
