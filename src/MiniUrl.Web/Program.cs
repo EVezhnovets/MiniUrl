@@ -1,3 +1,4 @@
+using MiniUrl.Infrastructure;
 using Serilog;
 using Serilog.Events;
 
@@ -17,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 
 builder.Services.AddControllersWithViews();
+Dependencies.ConfigureServices(builder.Configuration, builder.Services, builder.Logging);
 
 var app = builder.Build();
 

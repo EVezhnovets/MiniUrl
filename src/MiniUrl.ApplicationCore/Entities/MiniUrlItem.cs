@@ -1,6 +1,6 @@
 ﻿namespace MiniUrl.ApplicationCore
 {
-    public class MiniUrl
+    public class MiniUrlItem
     {
         public Guid Id { get; set; }
         public string? Url { get; set; }
