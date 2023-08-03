@@ -1,4 +1,4 @@
-﻿namespace MiniUrl.ApplicationCore
+﻿namespace MiniUrl.ApplicationCore.Entities
 {
     public class MiniUrlItem
     {
