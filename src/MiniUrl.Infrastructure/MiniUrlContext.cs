@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MiniUrl.ApplicationCore;
 using MiniUrl.ApplicationCore.Entities;
 
 namespace MiniUrl.Infrastructure
 {
-    public class MiniUrlContext : DbContext
+    public class MiniUrlContext : IdentityDbContext
     {
         DbSet<MiniUrlItem> MiniUrlItems { get; set; }
         DbSet<MiniUrlOfUser> MiniUrlOfUsers { get; set; }

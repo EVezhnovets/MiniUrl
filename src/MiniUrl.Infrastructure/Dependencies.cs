@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MiniUrl.ApplicationCore;
 using MiniUrl.ApplicationCore.Interfaces;
 
 namespace MiniUrl.Infrastructure
@@ -12,7 +12,13 @@ namespace MiniUrl.Infrastructure
         public static void ConfigureServices(IConfiguration configuration, IServiceCollection services, ILoggingBuilder loggingBuilder)
         {
             services.AddDbContext<MiniUrlContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("miniUrlConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("miniUrlConnection")));
+            services
+                .AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<MiniUrlContext>();
+                
 
             services.AddSingleton(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             
